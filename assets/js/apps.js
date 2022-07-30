@@ -13,7 +13,7 @@ let htmlUpdate = ""
 
 // Create initial list
 renderToDOList()
-
+renderTotalChores()
 // Add new item on list
 clickButton.onclick = () => {
     let newItem = document.querySelector("#newTask").value
@@ -31,18 +31,20 @@ clickButton.onclick = () => {
 //Change status to done
 function changeStatus(id) {
     checkClick = document.querySelector("#checkClick")
-    const index = tareas.findIndex((task) => task.id == id)
     if (checkClick.checked) {
-            tareas.completada == true            
-            renderToDOList()
-            
-        
-    } else {
         const index = tareas.findIndex((task) => task.id == id)
-        console.table(index)
-        
+        tareas[index].completada = "true"
+        renderTotalChores()
+        console.table(tareas)
+
+
+    } else if(checkClick.unchecked) {
+        const index = tareas.findIndex((task) => task.id == id)
+        tareas[index].completada = "false"
+        renderTotalChores()
+
     }
-   
+
 }
 
 
@@ -72,6 +74,8 @@ function renderToDOList() {
                         </div>`
     }
     taskList.innerHTML = htmlUpdate;
+}
+function renderTotalChores() {
     htmlTask.innerHTML = `Tareas Totales: ${tareas.length}`
     const pendingTask = tareas.filter(task => task.completada == false)
     htmlTaskCompleted.innerHTML = `Tareas Pendientes: ${pendingTask.length}`
