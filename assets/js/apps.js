@@ -12,15 +12,7 @@ var taskList = document.querySelector("#taskList");
 let htmlUpdate = ""
 
 // Create initial list
-for (let tarea of tareas) {
-    htmlUpdate += ` <div class="taskList"> 
-                        <div> ${tarea.id}</div>
-                        <div>${tarea.tarea}</div>
-                        <div><input type="checkbox" id="checkClick" onclick="changeStatus(${tarea.id})"></input></div>
-                        <div><button onclick="deleteElement(${tarea.id})">X</button></div>
-                    </div>`
-}
-taskList.innerHTML = htmlUpdate
+renderToDOList()
 
 // Add new item on list
 clickButton.onclick = () => {
@@ -33,31 +25,24 @@ clickButton.onclick = () => {
     //Create new item on array
     tareas.push({ id: idCreator, tarea: newItem, completada: false })
     htmlUpdate = ""
-    for (let tarea of tareas) {
-        htmlUpdate += ` <div class="taskList"> 
-                            <div> ${tarea.id}</div>
-                            <div>${tarea.tarea}</div>
-                            <div><input type="checkbox" id="checkClick" onclick="changeStatus(${tarea.id})"></input></div>
-                            <div><button onclick="deleteElement(${tarea.id})">X</button></div>
-                        </div>`
-    }
-    console.log(tareas)
-    taskList.innerHTML = htmlUpdate
-    htmlTask.innerHTML = `Tareas Totales: ${tareas.length}`
-    const pendingTask = tareas.filter(task => task.completada == false)
-    htmlTaskCompleted.innerHTML = `Tareas Pendientes: ${pendingTask.length}`
+    renderToDOList()
 }
 
 //Change status to done
 function changeStatus(id) {
-    const index = tareas.findIndex((task) => task.id == id)
     checkClick = document.querySelector("#checkClick")
+    const index = tareas.findIndex((task) => task.id == id)
     if (checkClick.checked) {
-
+            tareas.completada == true            
+            renderToDOList()
+            
+        
     } else {
-        tareas.completada == false;
-        console.log(index)
+        const index = tareas.findIndex((task) => task.id == id)
+        console.table(index)
+        
     }
+   
 }
 
 
@@ -66,6 +51,17 @@ function deleteElement(id) {
     console.log(id)
     const index = tareas.findIndex((del) => del.id == id)
     tareas.splice(index, 1)
+    renderToDOList()
+}
+
+htmlTask.innerHTML = `Tareas Totales: ${tareas.length}`
+const pendingTask = tareas.filter(task => task.completada == false)
+htmlTaskCompleted.innerHTML = `Tareas Pendientes: ${pendingTask.length}`
+
+
+
+
+function renderToDOList() {
     let htmlUpdate = ""
     for (let tarea of tareas) {
         htmlUpdate += ` <div class="taskList"> 
@@ -80,25 +76,3 @@ function deleteElement(id) {
     const pendingTask = tareas.filter(task => task.completada == false)
     htmlTaskCompleted.innerHTML = `Tareas Pendientes: ${pendingTask.length}`
 }
-
-htmlTask.innerHTML = `Tareas Totales: ${tareas.length}`
-const pendingTask = tareas.filter(task => task.completada == false)
-htmlTaskCompleted.innerHTML = `Tareas Pendientes: ${pendingTask.length}`
-
-/*
-(() => {
-    'use strict'
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    const forms = document.querySelectorAll('.needs-validation')
-    // Loop over them and prevent submission
-    Array.from(forms).forEach(form => {
-        form.addEventListener('submit', event => {
-            if (!form.checkValidity()) {
-                event.preventDefault()
-                event.stopPropagation()
-            }
-            form.classList.add('was-validated')
-        }, false)
-    })
-})()
-*/
