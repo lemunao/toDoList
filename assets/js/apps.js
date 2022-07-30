@@ -47,14 +47,11 @@ function changeStatus(id) {
     if (checkClick.checked) {       
         tareas[index].completada = "true"
         renderTotalChores()
-        console.table(tareas)
-
-
     } else {        
-        tareas[index].completada = "false"
-        renderTotalChores()
+        tareas[index].completada = "false"        
         console.table(tareas)
     }
+    renderTotalChores()
 }
 
 
@@ -63,8 +60,8 @@ function renderToDOList() {
     let htmlUpdate = ""
     for (let tarea of tareas) {
         htmlUpdate += ` <div class="taskList"> 
-                            <div> ${tarea.id}</div>
-                            <div>${tarea.tarea}</div>
+                            <div class="col-md-1"> ${tarea.id}</div>
+                            <div class="col-md-6">${tarea.tarea}</div>
                             <div><input type="checkbox" id="checkClick" onclick="changeStatus(${tarea.id})"></input></div>
                             <div><button onclick="deleteElement(${tarea.id})">X</button></div>
                         </div>`
