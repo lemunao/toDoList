@@ -43,15 +43,14 @@ function deleteElement(id) {
 //Change status to done
 function changeStatus(id) {
     checkClick = document.querySelector("#checkClick")
-    if (checkClick.checked) {
-        const index = tareas.findIndex((task) => task.id == id)
+    const index = tareas.findIndex((task) => task.id == id)
+    if (checkClick.checked) {       
         tareas[index].completada = "true"
         renderTotalChores()
         console.table(tareas)
 
 
-    } else {
-        const index = tareas.findIndex((task) => task.id == id)
+    } else {        
         tareas[index].completada = "false"
         renderTotalChores()
         console.table(tareas)
