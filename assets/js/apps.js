@@ -47,14 +47,11 @@ function changeStatus(id) {
     if (checkClick.checked) {       
         tareas[index].completada = "true"
         renderTotalChores()
-        console.table(tareas)
-
-
     } else {        
-        tareas[index].completada = "false"
-        renderTotalChores()
+        tareas[index].completada = "false"        
         console.table(tareas)
     }
+    renderTotalChores()
 }
 
 
