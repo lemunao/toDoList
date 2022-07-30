@@ -8,3 +8,15 @@
   background-color: lightgray;
   padding: 2%;
 }
+
+.task-list{
+  display: flex;
+  border: solid 1px red;
+}
+.task-list div{
+  margin-right: 2em;
+
+}
+.taskList{
+  display: flex;
+}

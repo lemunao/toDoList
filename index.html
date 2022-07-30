@@ -14,24 +14,27 @@
 
 <body>
 
-    <form class="row g-1 needs-validation main-page" novalidate>
-        <div class="col-md-4 colors">
+    <div class="row g-1 needs-validation main-page" novalidate>
+        <div class="col-md-6 colors">
             <label for="validationCustom01" class="form-label">To do List</label>
             <label for="validationCustom01" class="form-label">Nueva Tarea (New Task)</label>
-            <input type="text" class="form-control" id="newTask" value="Mark" required>
+            <input type="text" class="form-control" id="newTask" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
             <div class="col-md-4">
-                <button class="btn btn-primary" type="submit">Submit form</button>
+                <button class="btn btn-primary"  id="submitTask">Agrega tarea</button>
             </div>
-            <p>Tareas totales (Total task): <span id="tasks"></span></p> 
-            <p>Tareas terminadas (Task done):<p id="taskDone"></p></p> 
+            <div class="task-list">
+                <div>
+                    <p id="tasks"></p>
+                    <p id="taskDone"></p>
+                </div>
+                <div id="taskList">
+                </div>
+            </div>
         </div>
-    </form>
-
-
-
+    </div>
     <script src="assets/js/apps.js"></script>
 </body>
 
