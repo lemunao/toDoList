@@ -26,7 +26,19 @@ clickButton.onclick = () => {
     tareas.push({ id: idCreator, tarea: newItem, completada: false })
     htmlUpdate = ""
     renderToDOList()
+    renderTotalChores()
 }
+
+
+//Delete item from list
+function deleteElement(id) {
+    console.log(id)
+    const index = tareas.findIndex((del) => del.id == id)
+    tareas.splice(index, 1)
+    renderTotalChores()
+    renderToDOList()
+}
+
 
 //Change status to done
 function changeStatus(id) {
@@ -38,31 +50,16 @@ function changeStatus(id) {
         console.table(tareas)
 
 
-    } else if(checkClick.unchecked) {
+    } else {
         const index = tareas.findIndex((task) => task.id == id)
         tareas[index].completada = "false"
         renderTotalChores()
-
+        console.table(tareas)
     }
-
 }
 
 
-//Delete item from list
-function deleteElement(id) {
-    console.log(id)
-    const index = tareas.findIndex((del) => del.id == id)
-    tareas.splice(index, 1)
-    renderToDOList()
-}
-
-htmlTask.innerHTML = `Tareas Totales: ${tareas.length}`
-const pendingTask = tareas.filter(task => task.completada == false)
-htmlTaskCompleted.innerHTML = `Tareas Pendientes: ${pendingTask.length}`
-
-
-
-
+//Renders
 function renderToDOList() {
     let htmlUpdate = ""
     for (let tarea of tareas) {
